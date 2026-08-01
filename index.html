@@ -1222,14 +1222,6 @@ if(surpriseFilter === "none"){
 }
 
 
-);
-
-
-});
-
-
-}
-
 
 // シリーズ
 
@@ -1573,65 +1565,69 @@ function toggleFavorite(id){
 }
 
 
-
-// =========================
 // 検索
-// =========================
+if(searchText){
 
-document
-.getElementById("search")
-.addEventListener(
-"input",
-function(e){
+  list = list.filter(card => {
 
-    searchText =
-    e.target.value;
+    let text =
+      card.id +
+      card.name +
+      card.character +
+      card.series;
 
+    return text
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
 
-    displayCards();
+  });
 
-});
+}
 
+// シリーズ
+if(seriesFilter !== "all"){
 
+  list = list.filter(card =>
+    card.series === seriesFilter
+  );
 
-// =========================
-// シリーズ絞り込み
-// =========================
+}
 
-document
-.getElementById("series")
-.addEventListener(
-"change",
-function(e){
+// 何弾
+if(waveFilter !== "all"){
 
-    seriesFilter =
-    e.target.value;
+  list = list.filter(card =>
+    card.wave === waveFilter
+  );
 
+}
 
-    displayCards();
+// ミラクル
+if(miracleFilter === "M"){
 
-});
+  list = list.filter(card =>
+    card.miracle === "M"
+  );
 
+}
 
+// サプライズ
+if(surpriseFilter === "S"){
 
-// =========================
-// キャラクター絞り込み
-// =========================
+  list = list.filter(card =>
+    card.surprise === "S"
+  );
 
-document
-.getElementById("character")
-.addEventListener(
-"change",
-function(e){
+}
 
-    characterFilter =
-    e.target.value;
+// キャラクター
+if(characterFilter !== "all"){
 
+  list = list.filter(card =>
+    card.character === characterFilter
+  );
 
-    displayCards();
-
-});
-
+}
 
 
 // =========================
