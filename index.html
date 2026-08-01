@@ -433,7 +433,22 @@ placeholder="カードNo・カード名・キャラクター検索">
 
 </select>
 
+<select id="wave">
+<option value="all">すべての弾</option>
+</select>
 
+<select id="miracle">
+<option value="all">ミラクル全て</option>
+<option value="M">ミラクルのみ</option>
+<option value="none">通常のみ</option>
+</select>
+
+<select id="surprise">
+<option value="all">サプライズ全て</option>
+<option value="S">サプライズのみ</option>
+<option value="none">通常のみ</option>
+</select>
+    
 </div>
 
 <button id="dark-mode">
@@ -559,7 +574,9 @@ let characterFilter = "all";
 
 let sortType = "number";
 
-
+let waveFilter = "all";
+let miracleFilter = "all";
+let surpriseFilter = "all";
 
 // =========================
 // data.json読み込み
@@ -1020,6 +1037,7 @@ const rawData = `
 
 `;
 
+
 let cards = rawData
 .trim()
 .split("\n")
@@ -1031,13 +1049,32 @@ let cards = rawData
  return {
    id: cols[7],
    series: cols[0],
+   wave: cols[1],
+   miracle: cols[2],
    character: cols[4],
    name: cols[5],
    rarity: cols[6],
-   image: "images/" + cols[8]
+   image: "images/" + cols[8],
+   surprise: cols[10] || ""
  };
 
 });
+
+
+const waveSelect =
+document.getElementById("wave");
+
+[...new Set(cards.map(c => c.wave))]
+.sort()
+.forEach(v => {
+
+  waveSelect.innerHTML +=
+  `<option value="${v}">
+    ${v}
+  </option>`;
+
+});
+
 
 
 
@@ -1073,7 +1110,60 @@ card.series;
 return text
 .toLowerCase()
 .includes(
-searchText.toLowerCase()
+searchText.toLowerCase()// 検索
+
+if(searchText){
+
+  ...
+
+}
+
+/* ↓ここから追加 */
+
+// 何弾
+if(waveFilter !== "all"){
+
+  list = list.filter(card =>
+    card.wave === waveFilter
+  );
+
+}
+
+// ミラクル
+if(miracleFilter === "M"){
+
+  list = list.filter(card =>
+    card.miracle === "M"
+  );
+
+}
+
+if(miracleFilter === "none"){
+
+  list = list.filter(card =>
+    card.miracle !== "M"
+  );
+
+}
+
+// サプライズ
+if(surpriseFilter === "S"){
+
+  list = list.filter(card =>
+    card.surprise === "S"
+  );
+
+}
+
+if(surpriseFilter === "none"){
+
+  list = list.filter(card =>
+    card.surprise !== "S"
+  );
+
+}
+
+
 );
 
 
@@ -1463,7 +1553,58 @@ function(e){
 
 });
 
+// =========================
+// 何弾
+// =========================
 
+document
+.getElementById("wave")
+.addEventListener(
+"change",
+function(e){
+
+    waveFilter =
+    e.target.value;
+
+    displayCards();
+
+});
+
+
+// =========================
+// ミラクル
+// =========================
+
+document
+.getElementById("miracle")
+.addEventListener(
+"change",
+function(e){
+
+    miracleFilter =
+    e.target.value;
+
+    displayCards();
+
+});
+
+
+// =========================
+// サプライズ
+// =========================
+
+document
+.getElementById("surprise")
+.addEventListener(
+"change",
+function(e){
+
+    surpriseFilter =
+    e.target.value;
+
+    displayCards();
+
+});
 
 // =========================
 // 表示切替
