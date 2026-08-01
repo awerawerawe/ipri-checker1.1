@@ -1102,35 +1102,78 @@ let list=[...cards];
 
 if(searchText){
 
+  list = list.filter(card => {
 
-list=list.filter(card=>{
+    let text =
+      card.id +
+      card.name +
+      card.character +
+      card.series;
 
+    return text
+      .toLowerCase()
+      .includes(
+        searchText.toLowerCase()
+      );
 
-let text =
-
-card.id+
-card.name+
-card.character+
-card.series;
-
-
-return text
-.toLowerCase()
-.includes(
-searchText.toLowerCase()// 検索
-
-if(searchText){
-
-  ...
+  });
 
 }
 
 
 // 何弾
+
 if(waveFilter !== "all"){
 
   list = list.filter(card =>
     card.wave === waveFilter
+  );
+
+}
+
+
+// ミラクル
+
+if(miracleFilter === "M"){
+
+  list = list.filter(card =>
+    card.miracle === "M"
+  );
+
+}
+
+if(miracleFilter === "none"){
+
+  list = list.filter(card =>
+    card.miracle !== "M"
+  );
+
+}
+
+
+// サプライズ
+
+if(surpriseFilter === "S"){
+
+  list = list.filter(card =>
+    card.surprise === "S"
+  );
+
+}
+
+if(surpriseFilter === "none"){
+
+  list = list.filter(card =>
+    card.surprise !== "S"
+  );
+
+}
+
+// 何弾
+if(seriesFilter!=="all"){
+
+  list = list.filter(card =>
+    card.series === seriesFilter
   );
 
 }
