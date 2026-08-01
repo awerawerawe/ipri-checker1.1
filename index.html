@@ -1101,14 +1101,10 @@ document.getElementById("wave");
 // =========================
 
 function displayCards(){
-
-
-let list=[...cards];
-
-
+function displayCards(){
+// 表示切替
 
 // 検索
-
 if(searchText){
 
   list = list.filter(card => {
@@ -1121,17 +1117,22 @@ if(searchText){
 
     return text
       .toLowerCase()
-      .includes(
-        searchText.toLowerCase()
-      );
+      .includes(searchText.toLowerCase());
 
   });
 
 }
 
+// シリーズ
+if(seriesFilter !== "all"){
+
+  list = list.filter(card =>
+    card.series === seriesFilter
+  );
+
+}
 
 // 何弾
-
 if(waveFilter !== "all"){
 
   list = list.filter(card =>
@@ -1140,66 +1141,11 @@ if(waveFilter !== "all"){
 
 }
 
-
-// ミラクル
-
-if(miracleFilter === "M"){
-
-  list = list.filter(card =>
-    card.miracle === "M"
-  );
-
-}
-
-if(miracleFilter === "none"){
-
-  list = list.filter(card =>
-    card.miracle !== "M"
-  );
-
-}
-
-
-// サプライズ
-
-if(surpriseFilter === "S"){
-
-  list = list.filter(card =>
-    card.surprise === "S"
-  );
-
-}
-
-if(surpriseFilter === "none"){
-
-  list = list.filter(card =>
-    card.surprise !== "S"
-  );
-
-}
-
-// 何弾
-if(seriesFilter!=="all"){
-
-  list = list.filter(card =>
-    card.series === seriesFilter
-  );
-
-}
-
 // ミラクル
 if(miracleFilter === "M"){
 
   list = list.filter(card =>
     card.miracle === "M"
-  );
-
-}
-
-if(miracleFilter === "none"){
-
-  list = list.filter(card =>
-    card.miracle !== "M"
   );
 
 }
@@ -1212,90 +1158,17 @@ if(surpriseFilter === "S"){
   );
 
 }
-
-if(surpriseFilter === "none"){
-
-  list = list.filter(card =>
-    card.surprise !== "S"
-  );
-
-}
-
-
-
-// シリーズ
-
-if(seriesFilter!=="all"){
-
-  list=list.filter(card=>
-    card.series===seriesFilter
-  );
-
-}
-
-
-// 何弾
-
-if(waveFilter!=="all"){
-
-  list=list.filter(card=>
-    card.wave===waveFilter
-  );
-
-}
-
-
-// ミラクル
-
-if(miracleFilter==="M"){
-
-  list=list.filter(card=>
-    card.miracle==="M"
-  );
-
-}
-
-if(miracleFilter==="none"){
-
-  list=list.filter(card=>
-    card.miracle!=="M"
-  );
-
-}
-
-
-// サプライズ
-
-if(surpriseFilter==="S"){
-
-  list=list.filter(card=>
-    card.surprise==="S"
-  );
-
-}
-
-if(surpriseFilter==="none"){
-
-  list=list.filter(card=>
-    card.surprise!=="S"
-  );
-
-}
-
 
 // キャラクター
+if(characterFilter !== "all"){
 
-if(characterFilter!=="all"){
-
-  list=list.filter(card=>
-    card.character===characterFilter
+  list = list.filter(card =>
+    card.character === characterFilter
   );
 
 }
 
-
-// 表示切替
-
+    
 if(currentView==="owned"){
 
 
