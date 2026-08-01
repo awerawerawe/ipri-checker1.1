@@ -1046,25 +1046,25 @@ let cards = rawData
 
  const cols = line.split("\t");
 
- return {
-   id: cols[9],          
+return {
+   id: cols[7],
    series: cols[0],
 
-   wave: cols[1],        
+   wave: cols[1],
 
-   miracle: cols[4],     
+   miracle: cols[2],
 
-   character: cols[6],   
+   character: cols[4],
 
-   name: cols[7],        
+   name: cols[5],
 
-   rarity: cols[8],      
+   rarity: cols[6],
 
-   image: "images/" + cols[10],
+   image: "images/" + cols[8],
 
-   surprise: cols[11] || "" 
-}; 
-
+   surprise: cols[9] || ""
+};
+    
 });
 
 
