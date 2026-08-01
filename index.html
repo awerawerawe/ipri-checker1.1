@@ -1069,10 +1069,19 @@ return {
 
 
 const waveSelect =
+const waveSelect =
 document.getElementById("wave");
 
 [...new Set(cards.map(c => c.wave))]
 .sort()
+.forEach(v => {
+
+  waveSelect.innerHTML +=
+  `<option value="${v}">
+    ${v}
+  </option>`;
+
+});.sort()
 .forEach(v => {
 
   waveSelect.innerHTML +=
