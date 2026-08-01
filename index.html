@@ -1047,16 +1047,23 @@ let cards = rawData
  const cols = line.split("\t");
 
  return {
-   id: cols[7],
+   id: cols[8],          
    series: cols[0],
-   wave: cols[1],
-   miracle: cols[2],
-   character: cols[4],
-   name: cols[5],
-   rarity: cols[6],
-   image: "images/" + cols[8],
-   surprise: cols[10] || ""
- };
+
+   wave: cols[1],        
+
+   miracle: cols[3],     
+
+   character: cols[5],   
+
+   name: cols[6],        
+
+   rarity: cols[7],      
+
+   image: "images/" + cols[9],
+
+   surprise: cols[10] || "" 
+}; 
 
 });
 
@@ -1177,13 +1184,58 @@ if(surpriseFilter === "none"){
 
 if(seriesFilter!=="all"){
 
+  list=list.filter(card=>
+    card.series===seriesFilter
+  );
 
-list=list.filter(card=>
+}
 
-card.series===seriesFilter
 
-);
+// 何弾
 
+if(waveFilter!=="all"){
+
+  list=list.filter(card=>
+    card.wave===waveFilter
+  );
+
+}
+
+
+// ミラクル
+
+if(miracleFilter==="M"){
+
+  list=list.filter(card=>
+    card.miracle==="M"
+  );
+
+}
+
+if(miracleFilter==="none"){
+
+  list=list.filter(card=>
+    card.miracle!=="M"
+  );
+
+}
+
+
+// サプライズ
+
+if(surpriseFilter==="S"){
+
+  list=list.filter(card=>
+    card.surprise==="S"
+  );
+
+}
+
+if(surpriseFilter==="none"){
+
+  list=list.filter(card=>
+    card.surprise!=="S"
+  );
 
 }
 
@@ -1192,13 +1244,9 @@ card.series===seriesFilter
 
 if(characterFilter!=="all"){
 
-
-list=list.filter(card=>
-
-card.character===characterFilter
-
-);
-
+  list=list.filter(card=>
+    card.character===characterFilter
+  );
 
 }
 
