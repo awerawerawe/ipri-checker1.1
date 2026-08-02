@@ -1145,7 +1145,7 @@ if(miracleFilter === "M"){
 if(surpriseFilter === "S"){
 
   list = list.filter(card =>
-    card.surprise === "S"
+    card.surprise.includes("S")
   );
 
 }
