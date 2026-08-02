@@ -1336,6 +1336,8 @@ document
   "input",
   function(e){
 
+    console.log("検索文字:", e.target.value);
+
     searchText = e.target.value;
 
     displayCards();
