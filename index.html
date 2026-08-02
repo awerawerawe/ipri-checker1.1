@@ -1616,21 +1616,34 @@ ${item}
 
 characterList.forEach(item=>{
 
+  characterBox.innerHTML +=
 
-characterBox.innerHTML +=
-
-`
-<option value="${item}">
-${item}
-</option>
-`;
-
+  `
+  <option value="${item}">
+  ${item}
+  </option>
+  `;
 
 });
 
 
-}
+// シリーズ変更
+seriesBox.addEventListener("change", e => {
 
+  seriesFilter = e.target.value;
+  displayCards();
+
+});
+
+// キャラクター変更
+characterBox.addEventListener("change", e => {
+
+  characterFilter = e.target.value;
+  displayCards();
+
+});
+
+}
 
 
 // =========================
