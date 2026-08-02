@@ -1047,24 +1047,23 @@ let cards = rawData
  const cols = line.split("\t");
 
 return {
-   id: cols[7],
-   series: cols[0],
+   id: cols[8],                         
 
-   wave: cols[1],
+   series: cols[0],                     
+   wave: cols[1],                       
 
-   miracle: cols[2],
+   miracle: (cols[3] || "").trim(),     
 
-   character: (cols[4] || "").trim(),
+   character: (cols[5] || "").trim(),   
 
-   name: cols[5],
+   name: cols[6],                       
 
-   rarity: cols[6],
+   rarity: cols[7],                     
 
-   image: "images/" + cols[8],
+   image: "images/" + cols[9],          
 
-   surprise: (cols[9] || "").trim()
-};
-    
+   surprise: (cols[10] || "").trim()    
+};    
 });
 const waveSelect =
 document.getElementById("wave");
