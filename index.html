@@ -1046,23 +1046,15 @@ let cards = rawData
  const cols = line.split("\t");
 
 return {
-   id: cols[8],                         
-
-   series: cols[0],                     
-   wave: cols[1],                       
-
-   miracle: (cols[3] || "").trim(),     
-
-   character: (cols[5] || "").trim(),   
-
-   name: cols[6],                       
-
-   rarity: cols[7],                     
-
-   image: "images/" + cols[9],          
-
-   surprise: (cols[10] || "").trim()    
-};    
+   id: cols[8],
+   series: cols[0],
+   wave: cols[1],
+   miracle: (cols[3] || "").trim(),
+   character: (cols[5] || "").trim(),
+   name: cols[6],
+   rarity: cols[7],
+   image: "images/" + cols[9]
+};
 });
 const waveSelect =
 document.getElementById("wave");
@@ -1143,11 +1135,10 @@ if(miracleFilter === "M"){
 if(surpriseFilter === "S"){
 
   list = list.filter(card =>
-    card.surprise.includes("S")
+    card.id.endsWith("P")
   );
 
 }
-
 // キャラクター
 if(characterFilter !== "all"){
 
