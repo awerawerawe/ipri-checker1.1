@@ -1048,16 +1048,15 @@ const cols = line.split("\t");
 console.log(cols);
 
 return {
-   id: cols[8],
+   id: cols[7],
    series: cols[0],
    wave: cols[1],
-   miracle: (cols[3] || "").trim(),
-   character: (cols[5] || "").trim(),
-   name: cols[6],
-   rarity: cols[7],
-   image: "images/" + cols[9]
-};
-});
+   miracle: (cols[2] || "").trim(),
+   character: (cols[4] || "").trim(),
+   name: cols[5],
+   rarity: cols[6],
+   image: "images/" + cols[8]
+};});
 const waveSelect =
 document.getElementById("wave");
 
