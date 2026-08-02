@@ -1153,12 +1153,17 @@ if(surpriseFilter === "S"){
 // キャラクター
 if(characterFilter !== "all"){
 
-  list = list.filter(card =>
-    card.character === characterFilter
-  );
+  console.log("選択:", "[" + characterFilter + "]");
+
+  list = list.filter(card => {
+
+    console.log("カード:", "[" + card.character + "]");
+
+    return card.character === characterFilter;
+
+  });
 
 }
-
     
 if(currentView==="owned"){
 
