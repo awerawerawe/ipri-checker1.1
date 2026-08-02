@@ -1330,10 +1330,18 @@ function toggleOwned(id){
         JSON.stringify(saveData)
     );
 
+document
+.getElementById("search")
+.addEventListener(
+  "input",
+  function(e){
+
+    searchText = e.target.value;
 
     displayCards();
 
-}
+  }
+);
 
 
 
