@@ -1043,7 +1043,9 @@ let cards = rawData
 .slice(1)
 .map(line => {
 
- const cols = line.split("\t");
+const cols = line.split("\t");
+
+console.log(cols);
 
 return {
    id: cols[8],
