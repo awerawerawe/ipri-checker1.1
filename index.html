@@ -1370,15 +1370,27 @@ function updateSeriesRate(){
         )
       : 0;
 
-    area.innerHTML +=
-    `
-    <div class="series-stat">
-      <b>${series}</b><br>
-      ${owned} / ${total}枚
-      (${rate}%)
+area.innerHTML +=
+`
+<div class="series-stat">
+
+  <b>${series}</b><br>
+
+  <div class="progress-bar">
+
+    <div
+      class="progress-fill"
+      style="width:${rate}%"
+    >
+      ${rate}%
     </div>
-    <br>
-    `;
+
+  </div>
+
+  ${owned} / ${total}枚
+
+</div>
+`;
 
   });
 
