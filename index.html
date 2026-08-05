@@ -269,11 +269,25 @@ footer {
 
     padding:20px;
 
+    color:#;
+
+}
+footer {
+
+    text-align:center;
+
+    padding:20px;
+
     color:#888;
 
 }
 
-
+.remain{
+  margin-top:5px;
+  color:#666;
+  font-size:14px;
+}
+</style>
 
 /* スマホ調整 */
 
@@ -1417,13 +1431,15 @@ area.innerHTML +=
 
   </div>
 
-  ${owned} / ${total}枚
+${owned} / ${total}枚
 
-  ${
-    rate === 100
-    ? "<div class='complete'>🏆 COMPLETE</div>"
-    : ""
-  }
+${
+  rate === 100
+  ? "<div class='complete'>🏆 COMPLETE</div>"
+  : `<div class="remain">
+       あと ${total - owned} 枚でCOMPLETE
+     </div>`
+}
 
 </div>
 `;
