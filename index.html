@@ -415,7 +415,11 @@ h1{
 
 <div id="series-rate">
 </div>
-    
+<h2>
+👤 キャラクター別所持率
+</h2>
+
+<div id="character-rate"></div>
 <h2>
 🔍 検索・絞り込み
 </h2>
@@ -1432,6 +1436,72 @@ ${
 
 </div>
 `;
+  });
+
+}
+// =========================
+// キャラクター別所持率
+// =========================
+
+function updateCharacterRate(){
+
+  const area =
+  document.getElementById(
+    "character-rate"
+  );
+
+  area.innerHTML = "";
+
+  let characterList =
+  [...new Set(
+    cards
+      .map(card => card.character)
+      .filter(name => name)
+  )];
+
+  characterList.sort();
+
+  characterList.forEach(character => {
+
+    let total =
+    cards.filter(card =>
+      card.character === character
+    ).length;
+
+    let owned =
+    cards.filter(card =>
+      card.character === character &&
+      saveData[card.id]
+    ).length;
+
+    let rate =
+    total
+      ? Math.round(
+          owned / total * 100
+        )
+      : 0;
+
+    area.innerHTML +=
+    `
+    <div class="series-stat">
+
+      <b>${character}</b><br>
+
+      <div class="progress-bar">
+
+        <div
+          class="progress-fill"
+          style="width:${rate}%"
+        >
+          ${rate}%
+        </div>
+
+      </div>
+
+      ${owned} / ${total}枚
+
+    </div>
+    `;
   });
 
 }
