@@ -390,6 +390,8 @@ type="file"
 id="import-data"
 accept=".json">
 
+
+    
 <input
 id="search"
 placeholder="カードNo・カード名・キャラクター検索">
@@ -1696,23 +1698,7 @@ document.body
 // 起動
 // =====================
 
-console.log(cards);
-
-console.log(cards[0]);
-
-console.log("surprise=", cards[0].surprise);
-console.log("cols length=", Object.keys(cards[0]));
-    
-alert(
-"カード数：" + cards.length
-);
-
-console.log(cards[0]);
-
 createFilters();
-
-console.log("saveData=", saveData);
-console.log("favoriteData=", favoriteData);
 
 document
 .getElementById("export-data")
@@ -1741,6 +1727,49 @@ document
   "ipri-backup.json";
 
   a.click();
+
+});
+
+document
+.getElementById("import-data")
+.addEventListener("change", e => {
+
+  const file =
+  e.target.files[0];
+
+  if(!file) return;
+
+  const reader =
+  new FileReader();
+
+  reader.onload = () => {
+
+    const data =
+    JSON.parse(reader.result);
+
+    saveData =
+    data.owned || {};
+
+    favoriteData =
+    data.favorite || {};
+
+    localStorage.setItem(
+      "ipri_owned",
+      JSON.stringify(saveData)
+    );
+
+    localStorage.setItem(
+      "ipri_favorite",
+      JSON.stringify(favoriteData)
+    );
+
+    displayCards();
+
+    alert("復元完了");
+
+  };
+
+  reader.readAsText(file);
 
 });
     
