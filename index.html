@@ -315,7 +315,12 @@ h1{
   font-size:12px;
   line-height:20px;
 }
-
+.complete{
+  margin-top:8px;
+  font-weight:bold;
+  color:#ff9900;
+  font-size:18px;
+}
 </style>
 
 </head>
@@ -1409,9 +1414,14 @@ area.innerHTML +=
 
   ${owned} / ${total}枚
 
+  ${
+    rate === 100
+    ? "<div class='complete'>🏆 COMPLETE</div>"
+    : ""
+  }
+
 </div>
 `;
-
   });
 
 }
