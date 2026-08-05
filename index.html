@@ -1709,8 +1709,38 @@ createFilters();
 
 console.log("saveData=", saveData);
 console.log("favoriteData=", favoriteData);
+
+document
+.getElementById("export-data")
+.addEventListener("click", () => {
+
+  const data = {
+
+    owned: saveData,
+
+    favorite: favoriteData
+
+  };
+
+  const blob = new Blob(
+    [JSON.stringify(data)],
+    { type: "application/json" }
+  );
+
+  const a =
+  document.createElement("a");
+
+  a.href =
+  URL.createObjectURL(blob);
+
+  a.download =
+  "ipri-backup.json";
+
+  a.click();
+
+});
     
-displayCards()
+displayCards();
     
 </script>
 
