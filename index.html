@@ -1808,6 +1808,16 @@ document.body
 createFilters();
 
 document
+.getElementById("search")
+.addEventListener("input", e => {
+
+  searchText = e.target.value;
+
+  displayCards();
+
+});
+
+document
 .getElementById("export-data")
 .addEventListener("click", () => {
 
@@ -1818,6 +1828,10 @@ document
     favorite: favoriteData
 
   };
+
+  ...
+
+追加後は
 
   const blob = new Blob(
     [JSON.stringify(data)],
