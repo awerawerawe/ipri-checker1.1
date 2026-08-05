@@ -1331,6 +1331,60 @@ updateRate();
 }
 
 // =========================
+// シリーズ別所持率
+// =========================
+
+function updateSeriesRate(){
+
+  const area =
+  document.getElementById(
+    "series-rate"
+  );
+
+  area.innerHTML = "";
+
+  let seriesList =
+  [...new Set(
+    cards.map(card =>
+      card.series
+    )
+  )];
+
+  seriesList.forEach(series => {
+
+    let total =
+    cards.filter(card =>
+      card.series === series
+    ).length;
+
+    let owned =
+    cards.filter(card =>
+      card.series === series &&
+      saveData[card.id]
+    ).length;
+
+    let rate =
+    total
+      ? Math.round(
+          owned / total * 100
+        )
+      : 0;
+
+    area.innerHTML +=
+    `
+    <div class="series-stat">
+      <b>${series}</b><br>
+      ${owned} / ${total}枚
+      (${rate}%)
+    </div>
+    <br>
+    `;
+
+  });
+
+}
+    
+// =========================
 // 所持状態変更
 // =========================
 
